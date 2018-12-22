@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    defaultConfig {
+        applicationId "com.example.pc.mycoroutine"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.version_code
+        versionName build_versions.version_name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation depens.kotlin.stdlib
+
+    implementation depens.support.app_compat
+    implementation depens.support.constraintlayout
+
+    implementation depens.coroutines.android
+    implementation depens.coroutines.core
+
+    implementation depens.dagger.runtime
+    implementation depens.dagger.compiler
+    implementation depens.dagger.android
+    implementation depens.dagger.android_support
+    implementation depens.dagger.android_support_compiler
+
+    implementation depens.retrofit.runtime
+    implementation depens.retrofit.gson
+    implementation depens.retrofit.adapter_coroutine
+
+    implementation depens.room.runtime
+    implementation depens.room.compiler
+
+    implementation depens.lifecycle.runtime
+    implementation depens.lifecycle.extensions
+    implementation depens.lifecycle.java8
+    implementation depens.lifecycle.compiler
+
+    testImplementation depens.test.junit
+}
