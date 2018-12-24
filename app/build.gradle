@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion build_versions.target_sdk
     defaultConfig {
@@ -25,6 +27,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -33,27 +39,30 @@ dependencies {
 
     implementation depens.support.app_compat
     implementation depens.support.constraintlayout
+    implementation depens.support.recycler_view
 
     implementation depens.coroutines.android
     implementation depens.coroutines.core
 
     implementation depens.dagger.runtime
-    implementation depens.dagger.compiler
+    kapt depens.dagger.compiler
     implementation depens.dagger.android
     implementation depens.dagger.android_support
-    implementation depens.dagger.android_support_compiler
+    kapt depens.dagger.android_support_compiler
+
 
     implementation depens.retrofit.runtime
     implementation depens.retrofit.gson
     implementation depens.retrofit.adapter_coroutine
+    implementation depens.retrofit.logger
 
     implementation depens.room.runtime
-    implementation depens.room.compiler
+    kapt depens.room.compiler
 
     implementation depens.lifecycle.runtime
     implementation depens.lifecycle.extensions
     implementation depens.lifecycle.java8
-    implementation depens.lifecycle.compiler
+    kapt depens.lifecycle.compiler
 
     testImplementation depens.test.junit
 }
