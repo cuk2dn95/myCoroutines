@@ -1,5 +1,7 @@
 package com.example.pc.mycoroutine.dagger.submodule
 
+import androidx.lifecycle.ViewModelProvider
+import com.example.pc.mycoroutine.architecture.ViewModelFactory
 import com.example.pc.mycoroutine.data.PostRepository
 import com.example.pc.mycoroutine.data.source.PostSource
 import com.example.pc.mycoroutine.data.source.local.LocalPostRepository

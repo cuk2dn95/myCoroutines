@@ -1,11 +1,7 @@
 package com.example.pc.mycoroutine.feature.post
 
-import android.widget.GridLayout
-import android.widget.LinearLayout
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pc.mycoroutine.MainApplication
 import com.example.pc.mycoroutine.architecture.BaseViewModel
