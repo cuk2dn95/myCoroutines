@@ -35,6 +35,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path : ':shareddependency')
+    implementation project(path : ':feature1')
     implementation depens.kotlin.stdlib
 
     implementation depens.support.app_compat

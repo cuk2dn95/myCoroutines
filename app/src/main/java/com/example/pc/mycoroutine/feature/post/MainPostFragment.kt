@@ -1,6 +1,7 @@
 package com.example.pc.mycoroutine.feature.post
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +19,8 @@ import javax.inject.Inject
 
 class MainPostFragment : Fragment(), Injectable {
     @Inject
-     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel : MainPostViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var viewModel: MainPostViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentAllPostBinding>(inflater, R.layout.fragment_all_post, container, false)
@@ -33,6 +34,7 @@ class MainPostFragment : Fragment(), Injectable {
         super.onViewCreated(view, savedInstanceState)
         initComponent()
         viewModel.getAllPost()
+        Log.d("ShareComponent", "${viewModel.data.data} , ${viewModel.data}")
     }
 
     private fun initComponent() {

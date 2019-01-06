@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.pc.mycoroutine.architecture.ViewModelFactory
 import com.example.pc.mycoroutine.dagger.key.ViewModelKey
+import com.example.pc.mycoroutine.dagger.scope.AppScope
 import com.example.pc.mycoroutine.feature.post.MainPostViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,7 +20,7 @@ abstract class ViewModelModule {
     abstract fun providePostViewModel(viewModel: MainPostViewModel): ViewModel
 
 
-    @Singleton
+    @AppScope
     @Binds
     abstract fun provideViewModelFactory(factory : ViewModelFactory): ViewModelProvider.Factory
 }

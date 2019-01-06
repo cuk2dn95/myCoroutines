@@ -7,10 +7,14 @@ import com.example.pc.mycoroutine.MainApplication
 import com.example.pc.mycoroutine.architecture.BaseViewModel
 import com.example.pc.mycoroutine.data.PostRepository
 import com.example.pc.mycoroutine.data.model.Post
+import com.example.shareddependency.Data
 import javax.inject.Inject
 
 class MainPostViewModel @Inject constructor(private val repository: PostRepository,
                                             context: MainApplication) : BaseViewModel(context) {
+
+    @Inject
+    lateinit var data : Data
 
     val adapter = PostAdapter()
     lateinit var layoutManager: LinearLayoutManager

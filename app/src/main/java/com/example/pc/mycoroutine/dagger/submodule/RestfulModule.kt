@@ -1,5 +1,6 @@
 package com.example.pc.mycoroutine.dagger.submodule
 
+import com.example.pc.mycoroutine.dagger.scope.AppScope
 import com.example.pc.mycoroutine.data.source.remote.service.PostService
 import com.example.pc.mycoroutine.data.source.remote.service.RemoteConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 class RestfulModule {
-    @Singleton
+    @AppScope
     @Provides
     @Named("logger")
     fun provideHttpLogger(): OkHttpClient {
@@ -22,7 +23,7 @@ class RestfulModule {
         return OkHttpClient.Builder().addInterceptor(interceptor).build()
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideRetrofitClient(@Named("logger") logger: OkHttpClient): Retrofit {
         return Retrofit.Builder().client(logger)
@@ -32,7 +33,7 @@ class RestfulModule {
                 .build()
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun providePostService(client: Retrofit): PostService {
         return client.create(PostService::class.java)

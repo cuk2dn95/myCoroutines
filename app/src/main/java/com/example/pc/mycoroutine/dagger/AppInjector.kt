@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentManager
 import com.example.pc.mycoroutine.MainApplication
 import com.example.pc.mycoroutine.util.impl.ActivityLifeCycleCallbackImpl
 import com.example.pc.mycoroutine.util.impl.FragmentLifeCycleCallbackImpl
+import com.example.shareddependency.ProvideShareComponent
+import com.example.shareddependency.ProvideShareComponentHelper
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -20,7 +22,7 @@ object AppInjector {
         val androidInjector = reset(application)
         application.registerActivityLifecycleCallbacks(object : ActivityLifeCycleCallbackImpl() {
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-                if (activity is FragmentActivity && activity is Injectable) {
+                if (activity is FragmentActivity ) {
                     AndroidInjection.inject(activity)
                     injectFragment(activity)
                 }
@@ -32,12 +34,14 @@ object AppInjector {
     private fun injectFragment(activity: FragmentActivity) {
         activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentLifeCycleCallbackImpl() {
             override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
-                if (f is Injectable) AndroidSupportInjection.inject(f)
+              AndroidSupportInjection.inject(f)
             }
         }, true)
     }
 
     fun reset(application: MainApplication): AndroidInjector<MainApplication> {
-        return DaggerAppComponent.builder().application(application).build().apply { inject(application) }
+        return DaggerAppComponent.builder().application(application)
+                .shareComponent(ProvideShareComponentHelper.provideShareComponent(application))
+                .build().apply { inject(application) }
     }
 }
